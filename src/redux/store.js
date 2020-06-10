@@ -6,8 +6,6 @@ import sagaRoot from '../saga'
 
 const sagaMiddleware = createSagaMiddleware()
 
-
-
 const store = createStore(reducers, applyMiddleware(sagaMiddleware))
 export default store
 sagaMiddleware.run(sagaRoot)

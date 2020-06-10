@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import Routes from './components/Routes'
 
-function App() {
+function App () {
   return (
-    <div className="App">
-      <Routes/>
+    <div className='App'>
+      <Routes />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
