@@ -1,52 +1,39 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 /* Redux */
 import { connect } from 'react-redux'
 import { HeadlinesActions } from '../../../redux/reducers/headlines'
 import { SourcesActions } from '../../../redux/reducers/sources'
 
 /* Components */
-import { NewsCard } from '../../Common'
+import { NewsCard, SearchBar } from '../../Common'
 
 /* Extras */
 
 const Overview = ({
-  getAllHeadlines,
-  allHeadlines,
-  getEnHeadlines,
-  enHeadlines,
-  getCustomHeadlines,
   customHeadlines,
-
-  getAllSources,
-  allSources,
-  getEnSources,
-  enSources
 }) => {
-  useEffect(() => {
-    // getAllHeadlines()
-    getCustomHeadlines('title, urlToImage, description, url')
-  }, [])
-
-  useEffect(() => {
-    console.log(customHeadlines)
-  }, [customHeadlines])
 
   return (
-    <div>
-      {
-        customHeadlines.map(({ title, urlToImage, description, fav }, i) => (
-          <NewsCard
-            key={i}
-            mainKey={`news-card-${i}`}
-            title={title}
-            description={description}
-            imgSrc={urlToImage}
-            index={i}
-            fav={fav}
-          />
-        ))
-      }
-    </div>
+    <section id='overview-section'>
+      <SearchBar/>
+      <div className='row'>
+        <div className='col xs-12 md-10-offset-2 lg-6-offset-4'>
+          {
+            customHeadlines.map(({ title, urlToImage, review, publishedAt }, i) => (
+              <NewsCard
+                key={i}
+                mainKey={`news-card-${i}`}
+                title={title}
+                imgSrc={urlToImage}
+                publishedAt={publishedAt}
+                i={i}
+                review={review}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
   )
 }
 
