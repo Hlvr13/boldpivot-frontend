@@ -2,27 +2,43 @@ import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { DetailCard } from '../../Common'
+
 const Details = ({
   match: { params: { id: newsId } },
   customHeadlines
 }) => {
   const [news, setNews] = useState({
-    title: '',
-    description: ''
+    title: 'No title available',
+    description: 'No Description Available',
+    source: { name: '' }
   })
 
   useEffect(() => {
     if (customHeadlines.length > 0) {
       setNews(customHeadlines[newsId])
     }
-  }, [])
+  }, [customHeadlines])
 
   return (
-    <div>
-      <h1>Details</h1>
-      <h2>{news.title}</h2>
-      <h4>{news.description}</h4>
-    </div>
+    <section id='details-section'>
+      <div className='row'>
+        <div className='col xs-12'>
+          <DetailCard
+            key={newsId}
+            mainKey={`news-card-${newsId}`}
+            i={newsId}
+            title={news.title}
+            publishedAt={news.publishedAt}
+            description={news.description}
+            source={news.source.name}
+            sourceLink={news.url}
+            imgSrc={news.urlToImage}
+            review = {news.review}
+          />
+        </div>
+      </div>
+    </section>
   )
 }
 
