@@ -1,11 +1,9 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import Rating from './Rating'
 import { FiCalendar, FiArrowLeft } from 'react-icons/fi'
-import { HeadlinesActions } from '../../redux/reducers/headlines'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 
 const NewsCard = ({
   customHeadlines,
@@ -22,14 +20,13 @@ const NewsCard = ({
   history,
   ...rest
 }) => {
-  
-  const goBack = ev =>{
+  const goBack = ev => {
     history.goBack()
   }
 
   return (
     <div className='detail-card' key={mainKey} {...rest}>
-      <FiArrowLeft className='go-back' onClick = {goBack}/>
+      <FiArrowLeft className='go-back' onClick={goBack} />
       <img className='detail-card-img' src={imgSrc} alt='top headline visual' />
       <div className='detail-card-content'>
         <h1 className='detail-card-content-title' data-test={`title-${i}`}>
@@ -41,7 +38,7 @@ const NewsCard = ({
             className='detail-card-content-more'
           >
             Read More
-        </a>
+          </a>
         </h1>
         <p className='detail-card-content-description'> {description}</p>
         <p className='detail-card-content-source'><strong>{source}</strong></p>

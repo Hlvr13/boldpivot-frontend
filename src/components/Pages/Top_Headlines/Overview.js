@@ -10,12 +10,11 @@ import { NewsCard, SearchBar } from '../../Common'
 /* Extras */
 
 const Overview = ({
-  customHeadlines,
+  customHeadlines
 }) => {
-
   return (
     <section id='overview-section'>
-      <SearchBar/>
+      <SearchBar />
       <div className='row'>
         <div className='col xs-12 md-10-offset-2 lg-6-offset-4'>
           {

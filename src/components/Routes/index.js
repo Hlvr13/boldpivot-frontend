@@ -10,10 +10,9 @@ import HeadlineDetails from '../Pages/Top_Headlines/Details'
 import NotFound from '../Pages/NotFound'
 
 const Routes = ({ getCustomHeadlines }) => {
-
-  useEffect(()=>{
+  useEffect(() => {
     getCustomHeadlines('title, urlToImage, description, url, publishedAt, source{ name }')
-  },[])
+  }, [])
 
   return (
     <Router>
@@ -30,7 +29,7 @@ const Routes = ({ getCustomHeadlines }) => {
 
 const mapDispatchToProps = dispatch => ({
   // Headlines
-  getCustomHeadlines: (fields, args) => dispatch(HeadlinesActions.getCustomHeadlines(fields, args)),
+  getCustomHeadlines: (fields, args) => dispatch(HeadlinesActions.getCustomHeadlines(fields, args))
 })
 
 export default connect(null, mapDispatchToProps)(Routes)

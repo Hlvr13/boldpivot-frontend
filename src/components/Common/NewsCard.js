@@ -18,16 +18,15 @@ const NewsCard = ({
   review,
   ...rest
 }) => {
-
   return (
     <div className='news-card' key={mainKey} {...rest}>
       <img className='news-card-img' src={imgSrc} alt='top headline visual' />
       <div className='news-card-content'>
-        <NavLink to={`/news-details/${i}`} className='news-card-content-title' data-test = {`url-${i}`}>{title}</NavLink>
+        <NavLink to={`/news-details/${i}`} className='news-card-content-title' data-test={`url-${i}`}>{title}</NavLink>
         <p className='news-card-content-date'><FiCalendar /> {publishedAt}</p>
       </div>
       <div className='news-card-interactions'>
-        <Rating defaulRate={review} i={i} dataTest = {`rating-${i}`}/>
+        <Rating defaulRate={review} i={i} dataTest={`rating-${i}`} />
       </div>
     </div>
   )

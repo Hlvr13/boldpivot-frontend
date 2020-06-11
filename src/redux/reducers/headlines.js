@@ -54,7 +54,7 @@ export const setToFavorite = (state, action) => {
   const updatedHeadlines = [...customHeadlines]
   updatedHeadlines[i] = {
     ...customHeadlines[i],
-    fav: !customHeadlines[i].fav,
+    fav: !customHeadlines[i].fav
   }
 
   return state.merge({

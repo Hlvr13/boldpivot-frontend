@@ -34,7 +34,7 @@ const Details = ({
             source={news.source.name}
             sourceLink={news.url}
             imgSrc={news.urlToImage}
-            review = {news.review}
+            review={news.review}
           />
         </div>
       </div>
