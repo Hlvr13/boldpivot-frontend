@@ -8,6 +8,7 @@ const { Types, Creators } = createActions({
   getEnHeadlines: ['Fields', 'PropKey'],
   getCustomHeadlines: ['Fields', 'ARGS', 'PropKey'],
   setToFavorite: ['Index', 'Id'],
+  setReview: ['Index', 'Data'],
   setHeadlineDataToProps: ['Data', 'PropKey']
 })
 
@@ -29,7 +30,15 @@ export const INITIAL_STATE = Immutable({
 
 export const setHeadlineDataToProps = (state, action) => {
   const { Data, PropKey } = action
-  const updatedDate = PropKey.toLowerCase().includes('headline') ? [...Data].map(d => ({ ...d, fav: false })) : Data
+  const dateOption = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+  const updatedDate = PropKey.toLowerCase().includes('headline') ? (
+    [...Data].map(d => ({
+      ...d,
+      fav: false,
+      review: [true, false, false, false, false],
+      publishedAt: new Date(d.publishedAt).toLocaleDateString('en-US', dateOption)
+    }))
+  ) : Data
 
   return state.merge({
     [PropKey]: updatedDate
@@ -45,7 +54,22 @@ export const setToFavorite = (state, action) => {
   const updatedHeadlines = [...customHeadlines]
   updatedHeadlines[i] = {
     ...customHeadlines[i],
-    fav: !customHeadlines[i].fav
+    fav: !customHeadlines[i].fav,
+  }
+
+  return state.merge({
+    customHeadlines: updatedHeadlines
+  })
+}
+
+export const setReview = (state, action) => {
+  const { customHeadlines } = state
+  const { Index, Data } = action
+
+  const updatedHeadlines = [...customHeadlines]
+  updatedHeadlines[Index] = {
+    ...customHeadlines[Index],
+    review: Data
   }
 
   return state.merge({
@@ -60,5 +84,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_EN_HEADLINES]: null,
   [Types.GET_CUSTOM_HEADLINES]: null,
   [Types.SET_TO_FAVORITE]: setToFavorite,
+  [Types.SET_REVIEW]: setReview,
   [Types.SET_HEADLINE_DATA_TO_PROPS]: setHeadlineDataToProps
 })
